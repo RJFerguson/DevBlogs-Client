@@ -1,6 +1,7 @@
 const baseUrl = 'http://localhost:3000/api/v1'
 
 export class PostAdapter {
+  #optional: use axios
   static allPosts() {
     return fetch(`${baseUrl}/posts`)
     .then(res => res.json() )
