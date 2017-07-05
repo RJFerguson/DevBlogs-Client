@@ -13,7 +13,7 @@ const Post = ({postAttributes, handleClick}) =>  {
   }
 
     return (
-        
+        #think about making this a list
         <div>
           {postAttributes.map((post) => <div key={post.id}><div><h3><a href={post.link}>{post.title}</a></h3></div><div>{post.pubdate} | {<Link to = {`/posts/${post.id}`} onClick={ (event) => {handleClick(event, post)} }>Comments</Link>}</div></div> )} 
         </div>
