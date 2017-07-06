@@ -159,7 +159,7 @@ class NewComment extends React.Component {
             spellCheck={true}
           />
         </div>
-          <Button  onClick={this.handleSubmit} className=" btn-flat">Submit</Button>
+          <Button  onClick={this.handleSubmit} className="btn-flat">Submit</Button>
       </div>
     </form>
     );
