@@ -1,11 +1,8 @@
 import '../stylesheets/editor.css'
 import '../stylesheets/prism.css'
-
-
-
+import {Button} from 'react-materialize'
 const Draft = require('draft-js');
 const React = require('react');
-const ReactDOM = require('react-dom');
 const Immutable = require('immutable');
 
 const CodeUtils = require('draft-js-code')
@@ -14,10 +11,7 @@ var Prism = require('prismjs')
 const {
     Editor,
     EditorState,
-    RichUtils,
-    Decorator, 
-    DefaultDraftBlockRenderMap,
-    convertFromRaw,
+    RichUtils, 
     convertToRaw
 } = Draft;
 
@@ -118,9 +112,14 @@ class NewComment extends React.Component {
 
   handleSubmit(event){
     event.preventDefault()
-    // const rawDraftContentState = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-    const rawDraftContentState = this.state.editorState.getCurrentContent().getPlainText();
-    this.props.createComment(rawDraftContentState)
+
+    const rawDraftContentState = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
+    // const rawDraftContentState = this.state.editorState.getCurrentContent().getPlainText();
+    if(this.props.commentID){
+      this.props.createComment(rawDraftContentState, this.props.commentID)
+    } else{
+      this.props.createComment(rawDraftContentState)
+    }
   }
 
   render() {
@@ -137,6 +136,7 @@ class NewComment extends React.Component {
     }
 
     return (
+    <form className= "pure-form" onSubmit={this.handleSubmit}>
       <div className="RichEditor-root">
         <BlockStyleControls
           editorState={editorState}
@@ -159,7 +159,9 @@ class NewComment extends React.Component {
             spellCheck={true}
           />
         </div>
+          <Button  onClick={this.handleSubmit} className=" btn-flat">Submit</Button>
       </div>
+    </form>
     );
   }
 }
@@ -321,3 +323,5 @@ function occupySlice(targetArr, start, end, componentKey) {
 }
 
 export default NewComment
+
+

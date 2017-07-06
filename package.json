@@ -3,20 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
     "draft-js": "^0.10.1",
     "draft-js-code": "^0.2.0",
+    "draft-js-export-html": "^0.5.4",
     "draft-js-prism": "^1.0.3",
+    "draftjs-to-html": "^0.7.2",
     "immutable": "^3.8.1",
+    "materialize-css": "^0.99.0",
     "prismjs": "^1.6.0",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-addons-transition-group": "^15.6.0",
     "react-dom": "^15.6.1",
-    "react-flight": "^1.0.2",
-    "react-router-dom": "^4.1.1",
-    "reactstrap": "^4.7.0",
-    "semantic-ui-css": "^2.2.10",
-    "semantic-ui-react": "^0.70.0"
+    "react-materialize": "^1.0.3",
+    "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"

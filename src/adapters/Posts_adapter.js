@@ -1,8 +1,8 @@
 const baseUrl = 'http://localhost:3000/api/v1'
 
 export class PostAdapter {
-  static allPosts() {
-    return fetch(`${baseUrl}/posts`)
+  static allPosts(num=1) {
+    return fetch(`${baseUrl}/posts?page=${num}`)
     .then(res => res.json() )
     
   }
@@ -12,7 +12,7 @@ export class PostAdapter {
     .then(res => res.json() )
   }
 
-  static CreateNewComment(text, id){
+  static CreateNewPostComment(text, id){
     return fetch(`${baseUrl}/posts/${id}/comments`, {
       method: 'POST',
       headers: headers(),
@@ -20,6 +20,18 @@ export class PostAdapter {
         content: text,
         commentable_id: id,
         commentable_type: "Post"
+      })
+    })
+  }
+
+  static CreateNewCommentComment(text, postID, ParentCommentID){
+    return fetch(`${baseUrl}/posts/${postID}/comments`, {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({
+        content: text,
+        commentable_id: ParentCommentID,
+        commentable_type: "Comment"
       })
     })
   }

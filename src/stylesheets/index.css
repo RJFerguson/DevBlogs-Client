@@ -1,3 +1,36 @@
-body {
+/*body {
    background: #dde2e3;
+   font-family: sans-serif;
 }
+
+.pure-g, .pure-g-r {
+    letter-spacing: normal;
+}*/
+/*.togglable {
+  color: #D78770;
+  cursor: pointer;
+}*/
+
+/*.togglable-down::after,
+.togglable-up::after {
+  font-size: 8px;
+  margin-left: 0.5em;
+}
+
+.togglable-down::after {
+  content: "▼";
+  display: none
+}
+
+.togglable-up::after {
+  content: "▶";
+  display: inline-block;
+}*/
+/*.commentColoring {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.commentColoring:nth-child(odd) {
+    background: white;
+}*/
