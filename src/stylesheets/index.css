@@ -1,11 +1,8 @@
-/*body {
-   background: #dde2e3;
-   font-family: sans-serif;
+nav ul a:hover {
+     background-color: rgba(0,0,0,0); 
 }
 
-.pure-g, .pure-g-r {
-    letter-spacing: normal;
-}*/
+
 /*.togglable {
   color: #D78770;
   cursor: pointer;

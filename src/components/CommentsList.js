@@ -11,7 +11,7 @@ class CommentsList extends React.Component {
   List(postComments) {
   	const children = (comments) => {
     	if (comments) {
-      	return <ul className=".commentColoring">{ this.List(comments) }</ul>
+      	return <ul>{ this.List(comments) }</ul>
       }
     }
     return postComments.map((node, index) => {

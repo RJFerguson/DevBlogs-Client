@@ -22,11 +22,11 @@ class Comment extends React.Component {
   //{/*<Editor editorState={this.state.editorState}  />*/}
 
   
-
+  
 
   render() {
     return (
-      <li className="commentColoring">
+      <li className='commentColoring'>
         <Editor editorState={this.state.editorState}  />
         <ToggleBox title="Reply"><NewComment createComment={this.props.createComment } commentID={this.props.commentParentID}/></ToggleBox>
         <span>{this.props.children}</span>

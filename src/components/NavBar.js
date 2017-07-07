@@ -3,25 +3,32 @@ import { Link, NavLink } from 'react-router-dom'
 import {Navbar, NavItem } from 'react-materialize'
 
 export default function NavBar(props){
+    
   return (
-
-
-  <Navbar href='/posts' brand='DevBlogs' right>
-	  <NavItem to="/posts"  onClick={ (event) => {props.handleClick(event)}}>Home</NavItem>
-	  <NavItem href='/login'>Log In</NavItem>
-  </Navbar>
-  //  <nav>
-  //   <div className="nav-wrapper">
-  //   <p class="brand-logo center">Logo</p>
-  //     <ul className="left hide-on-med-and-down">
-  //       <li className="active"><NavLink to="/posts"  onClick={ (event) => {props.handleClick(event)}}>Home</NavLink></li>
-  //       <li><Link to="/posts" >User</Link></li>
-  //       <li><Link to="/posts">User</Link></li>
-  //     </ul>
-  //   </div>
-  // </nav>
-  )
+    <nav>
+    <div className="nav-wrapper">
+      <a href="#!" className="brand-logo">Logo</a>
+      <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
+      <ul className="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
+      <ul className="side-nav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">Javascript</a></li>
+        <li><a href="mobile.html">Mobile</a></li>
+      </ul>
+    </div>
+  </nav>
+         
+      )
+    
 }
+
+{/*<Link to='/posts' onClick={props.logout}>LOG-OUT</Link>*/}
 
 
 

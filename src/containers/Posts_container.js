@@ -6,7 +6,9 @@ import CommentsList from '../components/CommentsList.js'
 import NavBar from '../components/NavBar.js'
 import NewPage from '../components/NewPage.js'
 import PersonalFooter from '../components/Footer.js'
+import LoginForm from '../components/LoginForm.js'
 import {Row, Col} from 'react-materialize'
+
 class PostContainer extends Component {
   constructor(){
     super()
@@ -66,17 +68,11 @@ class PostContainer extends Component {
   render() {
     return (
        <Row>
-         <Col s={10} offset="s1">
-          <NavBar handleClick={this.handleHome}/> 
-          <Route exact path="/posts" render={()=>  
-            <div>
-              <Post postAttributes={this.state.posts} handleClick={this.handleClick}/> 
-              <NewPage handleClick={this.handleNewPage}/>
-              <PersonalFooter />
-            </div> } />
-
+         <Col s={12}>
+          <Route exact path="/posts" render={() => 
+            {return <div><Post postAttributes={this.state.posts} handleClick={this.handleClick}/> 
+            <NewPage handleClick={this.handleNewPage}/></div>}}/>
           <Route exact path="/posts/:id" render={()=>  {return <CommentsList post={this.state.selectedPost} createComment={this.createComment}/> }}/>
-          <Route path="/login" render={() => <PersonalFooter />}/>
         </Col>
       </Row>
     );

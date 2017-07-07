@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Collection, CollectionItem } from 'react-materialize'
-
+import "../stylesheets/post.css"
 
 
 const Post = ({postAttributes, handleClick}) =>  {
@@ -9,14 +9,14 @@ const Post = ({postAttributes, handleClick}) =>  {
     let post = postAttributes
     return (
       <Collection>
-      { <div key={post.id}><div><h3>{post.title}</h3></div> <div> {post.company} | {post.pubdate} | {<Link to = {`/posts/${post.id}`}>Comments</Link>}</div></div> } 
+      { <div key={post.id}><div><a href={post.link}><h4>{post.title}</h4></a></div> <div> {post.company} | {post.pubdate} | {<Link to = {`/posts/${post.id}`}>Comments</Link>}</div></div> } 
       </Collection>
     )
   }
 
     return (
       <Collection>
-        {postAttributes.map((post) => <CollectionItem key={post.id}><div><h3><a href={post.link}>{post.title}</a></h3></div><div> {post.company} | {post.pubdate} | {<Link to = {`/posts/${post.id}`} onClick={ (event) => {handleClick(event, post)} }>Comments</Link>}</div></CollectionItem> )} 
+        {postAttributes.map((post) => <CollectionItem key={post.id}><div className="posts"><a href={post.link}>{post.title}</a></div><div> {post.company} | {post.pubdate} | {<Link to = {`/posts/${post.id}`} onClick={ (event) => {handleClick(event, post)} }>Comments</Link>}</div></CollectionItem> )} 
       </Collection>
     );
   }

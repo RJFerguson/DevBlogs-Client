@@ -37,10 +37,33 @@ export class PostAdapter {
   }
 } 
 
+export class AuthAdapter {
+  static login(loginParams){
+    return fetch(`${baseUrl}/login`, {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify(loginParams)
+    }).then(res => res.json() )
+
+  }
+  
+  static currentUser(jwt){
+    return fetch(`${baseUrl}/current_user`, {
+      method: 'GET',
+      headers: headers()
+    }).then(res => res.json())
+  }
+
+
+}
+
+
+
 function headers(){
   return {
     'content-type': 'application/json',
-    'accept': 'application/json'
+    'accept': 'application/json',
+    'Authorization': localStorage.getItem('jwt')
   }
 }
 
