@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+// import {Input} from 'react-materialize'
 class LoginForm extends Component {
 
   constructor(){
@@ -28,9 +28,9 @@ class LoginForm extends Component {
     return (
       <form onSubmit={this.handleSubmit} >
         <label>Username</label>
-        <input s={6} type='text' value={this.state.username} name="username" onChange={this.handleChange}/>
+        <input  type='text' value={this.state.username} name="username" onChange={this.handleChange}/>
         <label>Password</label>
-        <input s={6} type='password' value={this.state.password} name="password" onChange={this.handleChange}/>
+        <input  type='password' value={this.state.password} name="password" onChange={this.handleChange}/>
         <input type="submit" />
       </form>
     )

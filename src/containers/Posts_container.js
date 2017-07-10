@@ -3,12 +3,10 @@ import { PostAdapter }  from '../adapters/Posts_adapter.js'
 import {Route, withRouter} from 'react-router-dom'
 import Post from '../components/Post.js'
 import CommentsList from '../components/CommentsList.js'
-import NavBar from '../components/NavBar.js'
 import NewPage from '../components/NewPage.js'
-import PersonalFooter from '../components/Footer.js'
-import LoginForm from '../components/LoginForm.js'
 import {Row, Col} from 'react-materialize'
-
+import withAuth from '../hocs/withAuth.js'
+import SearchBar from '../components/SearchBar.js'
 class PostContainer extends Component {
   constructor(){
     super()
@@ -17,11 +15,13 @@ class PostContainer extends Component {
       comments: [],
       selectedPost: {},
       defaultPage: 1,
+      searchPosts: [],
+      searchTerm: ""
     }
     this.handleClick = this.handleClick.bind(this)
     this.createComment = this.createComment.bind(this)
     this.handleNewPage = this.handleNewPage.bind(this)
-    this.handleHome = this.handleHome.bind(this)
+    this.search = this.search.bind(this)
   }
 
   componentDidMount(){
@@ -30,7 +30,6 @@ class PostContainer extends Component {
   }
 
   createComment(content,parentCommentID){
-    debugger 
     if(!parentCommentID){
         PostAdapter.CreateNewPostComment(content, this.state.selectedPost.id)
     .then(post => console.log(post))
@@ -41,18 +40,18 @@ class PostContainer extends Component {
     }
   }
 
-  handleHome(event){
-    event.preventDefault()
-    PostAdapter.allPosts()
-    .then( post => this.setState({posts: post, defaultPage: 1}))
-    this.props.history.push("/posts")
-  }
+  // handleHome(event){
+  //   event.preventDefault()
+  //   PostAdapter.allPosts()
+  //   .then( post => this.setState({posts: post, defaultPage: 1}))
+  //   this.props.history.push("/posts")
+  // }
 
   handleNewPage(event){
     event.preventDefault()
     this.state.defaultPage++
     PostAdapter.allPosts(this.state.defaultPage)
-    .then( post => this.setState({posts: post}))
+    .then( posts => this.setState({posts: posts}))
   }
   
   handleClick = (event, post) => {
@@ -64,14 +63,31 @@ class PostContainer extends Component {
      this.props.history.push(post_url)
   }
 
+  search(searchTerm){
+    PostAdapter.SearchPosts(searchTerm)
+    .then(posts => this.setState({searchPosts: posts, searchTerm: searchTerm}))
+  }
+
+  searchCheckFn(){
+  if (this.state.searchTerm.length > 0){
+    return <div>
+            <Post postAttributes={this.state.searchPosts} handleClick={this.handleClick}/> 
+            <NewPage handleClick={this.handleNewPage}/>
+          </div>
+  } else {
+    return <div>
+              <Post postAttributes={this.state.posts} handleClick={this.handleClick}/> 
+              <NewPage handleClick={this.handleNewPage}/>
+            </div>
+    }
+  }
 
   render() {
     return (
        <Row>
+          <SearchBar search={this.search}/> 
          <Col s={12}>
-          <Route exact path="/posts" render={() => 
-            {return <div><Post postAttributes={this.state.posts} handleClick={this.handleClick}/> 
-            <NewPage handleClick={this.handleNewPage}/></div>}}/>
+          <Route exact path="/posts" render={this.searchCheckFn.bind(this)}/>
           <Route exact path="/posts/:id" render={()=>  {return <CommentsList post={this.state.selectedPost} createComment={this.createComment}/> }}/>
         </Col>
       </Row>

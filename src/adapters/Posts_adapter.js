@@ -2,13 +2,23 @@ const baseUrl = 'http://localhost:3000/api/v1'
 
 export class PostAdapter {
   static allPosts(num=1) {
-    return fetch(`${baseUrl}/posts?page=${num}`)
-    .then(res => res.json() )
-    
+    return fetch(`${baseUrl}/posts?page=${num}`, {
+      headers: headers() 
+    })
+    .then(res => res.json())
+  }
+
+  static SearchPosts(searchTerm,num=1) {
+    return fetch(`${baseUrl}/posts/search?term=${searchTerm}`, {
+      headers: headers()
+    })
+    .then(res => res.json())
   }
   
   static GetPostComments(id){
-  return fetch(`${baseUrl}${id}/comments`)
+  return fetch(`${baseUrl}${id}/comments`, {
+      headers: headers()
+    })
     .then(res => res.json() )
   }
 
@@ -47,11 +57,11 @@ export class AuthAdapter {
 
   }
   
-  static currentUser(jwt){
+  static currentUser(){
     return fetch(`${baseUrl}/current_user`, {
-      method: 'GET',
       headers: headers()
-    }).then(res => res.json())
+    })
+    .then(res => res.json())
   }
 
 

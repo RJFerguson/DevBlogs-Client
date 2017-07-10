@@ -1,15 +1,15 @@
 import React from 'react';
 import NewComment from './NewComment.js'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import ToggleBox from './ToggleBox.js'
 import './Comment.css'
 
 import {Editor, EditorState, convertFromRaw} from 'draft-js';
 import PrismDraftDecorator from './PrismDraftDecorator.js'
-const Immutable = require('immutable');
-const CodeUtils = require('draft-js-code')
+// const Immutable = require('immutable');
+// const CodeUtils = require('draft-js-code')
 var Prism = require('prismjs')
-var classNames = require('classnames');
+// var classNames = require('classnames');
 
 
 class Comment extends React.Component {

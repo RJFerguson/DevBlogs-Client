@@ -1,5 +1,5 @@
 import React from 'react'
-import { AuthAdapter } from '../adapters'
+import { AuthAdapter } from '../adapters/Posts_adapter.js'
 import { withRouter } from 'react-router-dom'
 
 export default function withAuth(WrappedComponent){
@@ -12,6 +12,8 @@ export default function withAuth(WrappedComponent){
           .then(user => {
             if (user.error) {
               this.props.history.push('/login')
+            } else {
+              this.props.history.push('/posts')
             }
           })
       }

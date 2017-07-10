@@ -14,6 +14,8 @@ const Post = ({postAttributes, handleClick}) =>  {
     )
   }
 
+  
+
     return (
       <Collection>
         {postAttributes.map((post) => <CollectionItem key={post.id}><div className="posts"><a href={post.link}>{post.title}</a></div><div> {post.company} | {post.pubdate} | {<Link to = {`/posts/${post.id}`} onClick={ (event) => {handleClick(event, post)} }>Comments</Link>}</div></CollectionItem> )} 

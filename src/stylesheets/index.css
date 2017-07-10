@@ -2,6 +2,15 @@ nav ul a:hover {
      background-color: rgba(0,0,0,0); 
 }
 
+#search{
+       margin: 0 0 0px 0; 
+}
+
+
+.searchBarRow{
+      margin: 0 0 0px 0 !important;
+}
+
 
 /*.togglable {
   color: #D78770;

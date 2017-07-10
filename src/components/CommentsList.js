@@ -22,7 +22,7 @@ class CommentsList extends React.Component {
   }
 
   NoCommentsCheck(){
-    if (this.props.post.comments.length){
+    if (this.props.post.comments){
       return (
         <div>
           <NewComment createComment={this.props.createComment}/> 

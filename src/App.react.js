@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 
 import PostContainer from './containers/Posts_container.js'
-import { AuthAdapter } from './adapters/Posts_adapter.js'
+import { AuthAdapter, PostAdapter } from './adapters/Posts_adapter.js'
 import NavBar from './components/NavBar.js'
 import LoginForm from './components/LoginForm.js'
 import PersonalFooter from './components/Footer.js'
@@ -16,14 +16,15 @@ class App extends Component {
     auth: {
       isLoggedIn: false,
       user: {}
-    }
+    },
+    defaultPage: 1,
   }
   this.logIn = this.logIn.bind(this)
   }
 
   componentDidMount(){
     if (localStorage.getItem('jwt')) {
-      AuthAdapter.currentUser(localStorage.getItem('jwt'))
+      AuthAdapter.currentUser()
         .then(user => {
           console.log(user)
           if (!user.error) {
