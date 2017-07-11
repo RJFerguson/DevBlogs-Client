@@ -5,18 +5,19 @@ import { withRouter } from 'react-router-dom'
 export default function withAuth(WrappedComponent){
   class withAuth extends React.Component {
     componentDidMount(){
-      if (!localStorage.getItem('jwt')) {
-        this.props.history.push('/login')
-      } else {
-        AuthAdapter.currentUser()
-          .then(user => {
-            if (user.error) {
-              this.props.history.push('/login')
-            } else {
-              this.props.history.push('/posts')
-            }
-          })
-      }
+        if (localStorage.getItem('jwt')) {
+      AuthAdapter.currentUser()
+        .then(user => {
+          if (!user.error) {
+            this.setState({
+              auth: {
+                isLoggedIn: true,
+                user: user
+              }
+            })
+          }
+        })
+    }
     }
 
     render(){

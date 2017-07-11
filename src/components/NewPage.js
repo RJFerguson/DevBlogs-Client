@@ -6,8 +6,8 @@ const NewPage = (props) =>  {
 
     return (
       <Row> 
-        <Col offset="s9">
-          <Button waves='light' onClick={ (event) => {props.handleClick(event)}}>Next Page</Button>
+        <Col offset="s8 m9 l9">
+          <Button className="nxt-pg-btn" onClick={ (event) => {props.handleClick(event)}}>Next Page</Button>
         </Col>
       </Row>
     );

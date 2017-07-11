@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PostAdapter }  from '../adapters/Posts_adapter.js'
-import {Route, withRouter} from 'react-router-dom'
+import {Route, withRouter, Redirect} from 'react-router-dom'
 import Post from '../components/Post.js'
 import CommentsList from '../components/CommentsList.js'
 import NewPage from '../components/NewPage.js'
@@ -8,8 +8,8 @@ import {Row, Col} from 'react-materialize'
 import withAuth from '../hocs/withAuth.js'
 import SearchBar from '../components/SearchBar.js'
 class PostContainer extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       posts: [], 
       comments: [],
@@ -30,22 +30,27 @@ class PostContainer extends Component {
   }
 
   createComment(content,parentCommentID){
-    if(!parentCommentID){
-        PostAdapter.CreateNewPostComment(content, this.state.selectedPost.id)
-    .then(post => console.log(post))
-    } else {
-      PostAdapter.CreateNewCommentComment(content, this.state.selectedPost.id, parentCommentID)
-    .then(post => console.log(post))
+    if(Object.keys(this.props.user).length === 0){
+      this.props.history.push('/login')
+    }else {
 
+    if(!parentCommentID){
+      PostAdapter.CreateNewPostComment(content, this.state.selectedPost.id, this.props.user.id)
+    .then(post => this.setState((previousState) => {
+      return {selectedPost: previousState.posts[0]}
+    })).then(this.props.history.push('/posts'))
+    .then(window.location.reload())
+    } else {
+      PostAdapter.CreateNewCommentComment(content, this.state.selectedPost.id, parentCommentID, this.props.user.id)
+    .then(post => this.setState((previousState) => {
+      console.log(previousState.posts)
+      return {selectedPost: previousState.posts[0]}
+    })).then(this.props.history.push('/posts'))
+    .then(window.location.reload())
+  }
     }
   }
 
-  // handleHome(event){
-  //   event.preventDefault()
-  //   PostAdapter.allPosts()
-  //   .then( post => this.setState({posts: post, defaultPage: 1}))
-  //   this.props.history.push("/posts")
-  // }
 
   handleNewPage(event){
     event.preventDefault()
@@ -71,11 +76,13 @@ class PostContainer extends Component {
   searchCheckFn(){
   if (this.state.searchTerm.length > 0){
     return <div>
+      <SearchBar search={this.search}/> 
             <Post postAttributes={this.state.searchPosts} handleClick={this.handleClick}/> 
             <NewPage handleClick={this.handleNewPage}/>
           </div>
   } else {
     return <div>
+      <SearchBar search={this.search}/> 
               <Post postAttributes={this.state.posts} handleClick={this.handleClick}/> 
               <NewPage handleClick={this.handleNewPage}/>
             </div>
@@ -85,7 +92,6 @@ class PostContainer extends Component {
   render() {
     return (
        <Row>
-          <SearchBar search={this.search}/> 
          <Col s={12}>
           <Route exact path="/posts" render={this.searchCheckFn.bind(this)}/>
           <Route exact path="/posts/:id" render={()=>  {return <CommentsList post={this.state.selectedPost} createComment={this.createComment}/> }}/>
@@ -95,4 +101,4 @@ class PostContainer extends Component {
   }
 }
 
-export default withRouter(PostContainer);
+export default withAuth(PostContainer);

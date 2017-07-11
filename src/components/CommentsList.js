@@ -2,20 +2,24 @@ import React from 'react';
 import Post from './Post.js'
 import Comment from './Comment.js'
 import NewComment from './NewComment.js'
+import withAuth from '../hocs/withAuth.js'
 import './Comment.css'
 
 class CommentsList extends React.Component {
   constructor(props) {
   	super(props);
+
   }
   List(postComments) {
+    
   	const children = (comments) => {
     	if (comments) {
       	return <ul>{ this.List(comments) }</ul>
       }
     }
     return postComments.map((node, index) => {
-      return <Comment key={node.id} commentParentID={ node.id } content={ node.content } createComment={this.props.createComment}>
+      
+      return <Comment key={node.id}  user = {node.user} commentParentID={ node.id } content={ node.content } createComment={this.props.createComment}>
         { children(node.comments) }
       </Comment>
     })
@@ -49,4 +53,4 @@ class CommentsList extends React.Component {
     )
   }
 }
-export default CommentsList;
+export default withAuth(CommentsList);

@@ -22,30 +22,42 @@ export class PostAdapter {
     .then(res => res.json() )
   }
 
-  static CreateNewPostComment(text, id){
+  static CreateNewPostComment(text, id, user_id){
+    console.log(text, id, user_id)
     return fetch(`${baseUrl}/posts/${id}/comments`, {
       method: 'POST',
       headers: headers(),
       body: JSON.stringify({
         content: text,
         commentable_id: id,
-        commentable_type: "Post"
+        commentable_type: "Post",
+        user: user_id
       })
     })
   }
 
-  static CreateNewCommentComment(text, postID, ParentCommentID){
+  static CreateNewCommentComment(text, postID, ParentCommentID, user_id){
     return fetch(`${baseUrl}/posts/${postID}/comments`, {
       method: 'POST',
       headers: headers(),
       body: JSON.stringify({
         content: text,
         commentable_id: ParentCommentID,
-        commentable_type: "Comment"
+        commentable_type: "Comment",
+        user: user_id
       })
     })
   }
 } 
+export class UserAdapter {
+   static CommentUser(id){
+    return fetch(`${baseUrl}/users/${id}`, {
+      headers: headers()
+    })
+    .then(res => res.json())
+  }
+}
+
 
 export class AuthAdapter {
   static login(loginParams){

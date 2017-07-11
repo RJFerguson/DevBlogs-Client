@@ -1,4 +1,6 @@
 import React from 'react'
+import {Button } from 'react-materialize'
+import withPerm from '../hocs/withPerm.js'
 class ToggleBox extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ class ToggleBox extends React.Component {
     return (
       <div className="box">
         <div className="boxTitle" onClick={this.toggleBox}>
-          <strong>{title}</strong>
+          <Button className="cmt-rply-btn">{title}</Button>
         </div>
         {opened && (
           <div className="boxContent">

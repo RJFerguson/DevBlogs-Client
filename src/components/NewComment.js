@@ -114,7 +114,6 @@ class NewComment extends React.Component {
     event.preventDefault()
 
     const rawDraftContentState = JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent()));
-    // const rawDraftContentState = this.state.editorState.getCurrentContent().getPlainText();
     if(this.props.commentID){
       this.props.createComment(rawDraftContentState, this.props.commentID)
     } else{
@@ -125,8 +124,6 @@ class NewComment extends React.Component {
   render() {
     const {editorState} = this.state;
 
-    // If the user changes block type before entering any text, we can
-    // either style the placeholder or hide it. Let's just hide it now.
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {

@@ -1,35 +1,15 @@
+ let className = 'RichEditor-editor';
+ 
 
-
-class CommentList extends React.Component {
-  constructor(props) {
-    super(props);
-
-  }
-  
-  render() {
-  	var childNodes;
-    var classObj;
-
-    if (this.props.node.comments != null) {
-      comments = this.props.node.comments.map(function(node, index) {
-        return <li key={index}><CommentList node={node} /></li>
-      });
-    }
-
-
-    return (
-      <div>
-          {this.props.node.title}
-        <ul>
-          {comments}
-        </ul>
+      <div className="RichEditor-root">
+        <div className={className} onClick={this.focus}>
+          <Editor
+            blockStyleFn={getBlockStyle}
+            customStyleMap={styleMap}
+            editorState={this.state.editorState}
+            handleKeyCommand={this.handleKeyCommand}
+            onChange={this.onChange}
+            onTab={this.onTab}
+          />
+        </div>
       </div>
-    );
-  }
-}
-
-
-ReactDOM.render(
-  <CommentList node={props.post} />,
-  document.getElementById("tree")
-);

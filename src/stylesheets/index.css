@@ -6,6 +6,9 @@ nav ul a:hover {
        margin: 0 0 0px 0; 
 }
 
+body{
+  background-color: #fbfbfb 
+}
 
 .searchBarRow{
       margin: 0 0 0px 0 !important;
@@ -40,3 +43,53 @@ nav ul a:hover {
 .commentColoring:nth-child(odd) {
     background: white;
 }*/
+
+.boxContent{
+  margin-top: .5em;
+  margin-left: 1em;
+}
+
+.boxTitle{
+  margin-left: 1em;
+}
+
+.btn:hover{
+ background-color: #424242;
+  color: #fafafa
+}
+
+nav{
+  background-color: #212121
+}
+
+.nxt-pg-btn:hover{
+  background-color: #424242;
+  color: #fafafa 
+}
+
+.nxt-pg-btn{
+  background-color: transparent;
+  color: #212121;
+  box-shadow: none;
+}
+
+.cmt-rply-btn{
+    background-color: transparent;
+  color: #212121;
+  box-shadow: none;
+}
+
+.cmt-rply-btn:hover{
+  background-color: #424242;
+  color: #fafafa 
+}
+
+.col-story{
+  margin-left: 1em;
+}
+
+.user-name-box{
+  margin-top: .2em;
+  margin-left: .5em;
+  font-size: 18px;
+}

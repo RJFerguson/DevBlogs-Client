@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 
 import PostContainer from './containers/Posts_container.js'
-import { AuthAdapter, PostAdapter } from './adapters/Posts_adapter.js'
+import { AuthAdapter } from './adapters/Posts_adapter.js'
 import NavBar from './components/NavBar.js'
 import LoginForm from './components/LoginForm.js'
 import PersonalFooter from './components/Footer.js'
@@ -26,7 +26,6 @@ class App extends Component {
     if (localStorage.getItem('jwt')) {
       AuthAdapter.currentUser()
         .then(user => {
-          console.log(user)
           if (!user.error) {
             this.setState({
               auth: {
@@ -69,13 +68,12 @@ class App extends Component {
       } else {
       }
 
-
     return (
         <Row>
           <Col s={12} >
           <NavBar title={title} logout={this.logOut.bind(this)}/>
-
-          <Route path="/posts" render={() => <PostContainer />} />
+          
+          <Route path="/posts" render={() => <PostContainer user={this.state.auth.user}/>} />
           <Route path="/about" render={() => {
             return <p>My little app to read dev blogs!</p>
           }} />

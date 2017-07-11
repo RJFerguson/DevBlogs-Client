@@ -1,33 +1,49 @@
 import React from 'react';
 import NewComment from './NewComment.js'
-// import { Link } from 'react-router-dom';
 import ToggleBox from './ToggleBox.js'
 import './Comment.css'
+import '../stylesheets/editor.css'
+import withAuth from '../hocs/withAuth.js'
+import { UserAdapter }  from '../adapters/Posts_adapter.js'
 
 import {Editor, EditorState, convertFromRaw} from 'draft-js';
 import PrismDraftDecorator from './PrismDraftDecorator.js'
-// const Immutable = require('immutable');
-// const CodeUtils = require('draft-js-code')
 var Prism = require('prismjs')
-// var classNames = require('classnames');
-
+const Immutable = require('immutable');
+const {Map, List} = Immutable;
 
 class Comment extends React.Component {
   constructor(props) {
     super(props);
+    this.State = {
+    auth: {
+      isLoggedIn: false
+        },
+    username: ""
+      }
     let decorator = new PrismDraftDecorator(Prism.languages.javascript);
     const ContentState = convertFromRaw(JSON.parse(this.props.content));
     this.state = {editorState: EditorState.createWithContent(ContentState, decorator)};
   }
-  //{/*<Editor editorState={this.state.editorState}  />*/}
 
-  
-  
+  componentDidMount(){
+    UserAdapter.CommentUser(this.props.user)
+    .then( user => this.setState({ username: user.username }))
+  }
+
+  LoginCheck(){
+    if (this.state.auth.isLoggedIn){
+      <ToggleBox title="Reply"><NewComment createComment={this.props.createComment } commentID={this.props.commentParentID}/></ToggleBox>
+    } else {
+
+    }
+  }
 
   render() {
     return (
       <li className='commentColoring'>
-        <Editor editorState={this.state.editorState}  />
+        <p className="user-name-box">{this.state.username}</p>
+        <Editor editorState={this.state.editorState} readOnly={true}/>
         <ToggleBox title="Reply"><NewComment createComment={this.props.createComment } commentID={this.props.commentParentID}/></ToggleBox>
         <span>{this.props.children}</span>
       </li>
@@ -36,4 +52,4 @@ class Comment extends React.Component {
 }
 
 
-export default Comment
+export default withAuth(Comment)

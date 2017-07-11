@@ -9,7 +9,7 @@ const Post = ({postAttributes, handleClick}) =>  {
     let post = postAttributes
     return (
       <Collection>
-      { <div key={post.id}><div><a href={post.link}><h4>{post.title}</h4></a></div> <div> {post.company} | {post.pubdate} | {<Link to = {`/posts/${post.id}`}>Comments</Link>}</div></div> } 
+      { <div key={post.id}><div className="col-story"><a href={post.link}><h4>{post.title}</h4></a></div> <div className="col-story"> {post.company} | {post.pubdate} | {<Link to = {`/posts/${post.id}`}>Comments</Link>}</div></div> } 
       </Collection>
     )
   }
@@ -18,7 +18,7 @@ const Post = ({postAttributes, handleClick}) =>  {
 
     return (
       <Collection>
-        {postAttributes.map((post) => <CollectionItem key={post.id}><div className="posts"><a href={post.link}>{post.title}</a></div><div> {post.company} | {post.pubdate} | {<Link to = {`/posts/${post.id}`} onClick={ (event) => {handleClick(event, post)} }>Comments</Link>}</div></CollectionItem> )} 
+        {postAttributes.map((post) => <CollectionItem key={post.id}><div className="posts"><a href={post.link}>{post.title}</a></div><div> {post.company} | {post.pubdate} | {<Link to = {`/posts/${post.id}`} onClick={ (event) => {handleClick(event, post)} }>Comments({post.comments.length})</Link>}</div></CollectionItem> )} 
       </Collection>
     );
   }
