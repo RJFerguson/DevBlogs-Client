@@ -6,7 +6,7 @@ export default function NavBar(props){
   return (
     <nav>
     <div className="nav-wrapper">
-      <Link to="/posts" className="brand-logo" onClick={ (event) => {props.handleHome(event)}}>DevBlogs</Link>
+      <Link to="/posts" className="brand-logo navBrand" onClick={ (event) => {props.handleHome(event)}}>DevBlogs</Link>
       <a data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
       <ul className="right hide-on-med-and-down">
         <li><Link to="/posts"  onClick={ (event) => {props.handleHome(event)}}>Home</Link></li>

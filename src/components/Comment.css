@@ -7,6 +7,10 @@
   border-color: rgba(0,0,0,0.1);
 }
 
+.commentColoring:hover{
+  border-color: rgba(0,0,0,.5); 
+}
+
 ul:empty {
    display: none;
 }

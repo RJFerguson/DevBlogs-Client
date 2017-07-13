@@ -100,3 +100,7 @@ nav{
   border-radius: .2em;
   border-color: rgba(0,0,0,0.1);
 }
+
+.navBrand{
+  padding-left: 1em !important;
+}

@@ -56,6 +56,13 @@ export class UserAdapter {
     })
     .then(res => res.json())
   }
+
+  static UserPage(id){
+    return fetch(`${baseUrl}/users/${id}`, {
+      headers: headers()
+    })
+    .then(res => res.json())
+  }
 }
 
 

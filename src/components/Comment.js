@@ -5,6 +5,7 @@ import './Comment.css'
 import '../stylesheets/editor.css'
 import withAuth from '../hocs/withAuth.js'
 import { UserAdapter }  from '../adapters/Posts_adapter.js'
+import {Link} from 'react-router-dom'
 
 import {Editor, EditorState, convertFromRaw} from 'draft-js';
 import PrismDraftDecorator from './PrismDraftDecorator.js'
@@ -26,7 +27,7 @@ class Comment extends React.Component {
     this.state = {editorState: EditorState.createWithContent(ContentState, decorator)};
   }
 
-  componentDidMount(){
+  componentDidMount(){ 
     UserAdapter.CommentUser(this.props.user)
     .then( user => this.setState({ username: user.username }))
   }
@@ -42,7 +43,7 @@ class Comment extends React.Component {
   render() {
     return (
       <li className='commentColoring'>
-        <p className="user-name-box">{this.state.username}</p>
+        <Link to = {`/users/${this.props.user}`}><p className="user-name-box">{this.state.username}</p></Link>
         <Editor editorState={this.state.editorState} readOnly={true}/>
         <ToggleBox title="Reply"><NewComment createComment={this.props.createComment } commentID={this.props.commentParentID}/></ToggleBox>
         <span>{this.props.children}</span>
@@ -50,6 +51,9 @@ class Comment extends React.Component {
     );
   }
 }
+// { <Link to = {`/user/${this.props.user}`}><p className="user-name-box">{this.state.username}</p></Link>}
 
+// let post_url = event.target.closest("a").getAttribute('href')
+//      this.props.history.push(post_url)
 
 export default withAuth(Comment)

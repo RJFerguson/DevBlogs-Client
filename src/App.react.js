@@ -7,6 +7,7 @@ import NavBar from './components/NavBar.js'
 import LoginForm from './components/LoginForm.js'
 import PersonalFooter from './components/Footer.js'
 import {Row, Col} from 'react-materialize'
+import User from './components/User.js'
 import './stylesheets/index.css'
 
 class App extends Component {
@@ -78,6 +79,7 @@ class App extends Component {
             return <p>My little app to read dev blogs!</p>
           }} />
           <Route path='/login' render={() => <LoginForm onSubmit={this.logIn}/>} />
+          <Route path="/users/:id" component={User}/>
           <PersonalFooter />
           </Col>
         </Row>

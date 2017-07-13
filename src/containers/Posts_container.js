@@ -83,7 +83,7 @@ class PostContainer extends Component {
   } else {
     return <div>
       <SearchBar search={this.search}/> 
-              <Post postAttributes={this.state.posts} handleClick={this.handleClick}/> 
+              <Post postAttributes={this.state.posts} handleClick={this.handleClick} /> 
               <NewPage handleClick={this.handleNewPage}/>
             </div>
     }
