@@ -12,6 +12,13 @@ body{
 
 .searchBarRow{
       margin: 0 0 0px 0 !important;
+      color: #424242;
+      
+}
+
+.active{
+      margin: 0 0 0px 0 !important;
+      color: #424242 !important;
 }
 
 

@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 
 import PostContainer from './containers/Posts_container.js'
-import { AuthAdapter } from './adapters/Posts_adapter.js'
+import { AuthAdapter, UserAdapter } from './adapters/Posts_adapter.js'
 import NavBar from './components/NavBar.js'
 import LoginForm from './components/LoginForm.js'
 import PersonalFooter from './components/Footer.js'
 import {Row, Col} from 'react-materialize'
 import User from './components/User.js'
+import SignUp from './components/signup.js'
 import './stylesheets/index.css'
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
     defaultPage: 1,
   }
   this.logIn = this.logIn.bind(this)
+  this.SignUp = this.SignUp.bind(this)
   }
 
   componentDidMount(){
@@ -37,6 +39,11 @@ class App extends Component {
           }
         })
     }
+  }
+
+  SignUp(SignUpParams){
+    UserAdapter.SignUp(SignUpParams)
+      .then( user => console.log(user))
   }
 
   logIn(loginParams){
@@ -80,6 +87,7 @@ class App extends Component {
           }} />
           <Route path='/login' render={() => <LoginForm onSubmit={this.logIn}/>} />
           <Route path="/users/:id" component={User}/>
+          <Route path ='/signup' render={() => <SignUp onSubmit={this.SignUp}/>}/>
           <PersonalFooter />
           </Col>
         </Row>

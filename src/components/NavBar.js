@@ -11,6 +11,8 @@ export default function NavBar(props){
       <ul className="right hide-on-med-and-down">
         <li><Link to="/posts"  onClick={ (event) => {props.handleHome(event)}}>Home</Link></li>
         <li><a href="/posts">About</a></li>
+        <li>{((props.title) ? "" : <Link to="/signup"  onClick={ (event) => {props.handleHome(event)}}>Sign-Up</Link> )}</li>
+
         <li>{((props.title) ? <Link to='/posts' onClick={props.logout}>LOG-OUT</Link> : <Link to="/login">Login</Link> )}</li>
       </ul>
       <ul className="side-nav" id="mobile-demo">
@@ -24,6 +26,7 @@ export default function NavBar(props){
       )
     
 }
+
 
 
 

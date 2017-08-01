@@ -13,11 +13,11 @@ export default class PersonalFooter extends React.Component {
       <nav>
     <div className="nav-wrapper">
      <ul className="left">
-        <li><a href="sass.html">Made By: Ryan Ferguson</a></li>
+        <li><a href="/posts">Made By: Ryan Ferguson</a></li>
       </ul>
       <ul className="right">
-        <li><a href="sass.html">GitHub</a></li>
-        <li><a href="badges.html">LinkedIn</a></li>
+        <li><a href="/posts">GitHub</a></li>
+        <li><a href="/posts">LinkedIn</a></li>
       </ul>
     </div>
   </nav>

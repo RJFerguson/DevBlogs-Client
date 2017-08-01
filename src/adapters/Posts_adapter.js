@@ -63,8 +63,17 @@ export class UserAdapter {
     })
     .then(res => res.json())
   }
+   static SignUp(params){
+    return fetch(`${baseUrl}/SignUp`, {
+      method: 'POST',
+      headers: headers2(),
+      body: JSON.stringify(params)
+    }).then(res => res.json() )
+
+  
 }
 
+}
 
 export class AuthAdapter {
   static login(loginParams){
@@ -75,6 +84,8 @@ export class AuthAdapter {
     }).then(res => res.json() )
 
   }
+  
+
   
   static currentUser(){
     return fetch(`${baseUrl}/current_user`, {
@@ -96,3 +107,10 @@ function headers(){
   }
 }
 
+
+function headers2(){
+  return {
+    'content-type': 'application/json',
+    'accept': 'application/json',
+  }
+}
